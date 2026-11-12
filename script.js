@@ -1,3 +1,4 @@
+// EDIT THIS SECTION: paste your real email, GitHub profile and project links.
 const profile = { email: 'farahrifad2006@gmail.com', phone: '+971 56 457 6240', linkedin: '', github: 'https://github.com/Farah-vx' };
 // Blank links are safely hidden. Replace descriptions with your own accurate wording.
 const projects = [
@@ -291,4 +292,3 @@ document.querySelectorAll('.reveal').forEach(reveal);
 let scrollPending=false;function progress(){const max=document.documentElement.scrollHeight-innerHeight;$('.reading-progress').style.width=`${max>0?scrollY/max*100:0}%`;scrollPending=false;}
 window.addEventListener('scroll',()=>{if(!scrollPending){scrollPending=true;requestAnimationFrame(progress);}},{passive:true});window.addEventListener('resize',progress);
 updateMotion();renderGallery();progress();
-
