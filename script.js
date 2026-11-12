@@ -156,15 +156,24 @@ function addLink(container,label,url,className='project-link'){
  if(!url)return;try{if(!['https:','mailto:'].includes(new URL(url).protocol))return;}catch{return;}
  const a=document.createElement('a');a.textContent=label;a.href=url;a.className=className;if(url.startsWith('https:')){a.target='_blank';a.rel='noopener noreferrer';}container.append(a);
 }
-function coverHTML(index){const posters={0:'luxe-japan',1:'karchive',6:'sveltra'};if(posters[index])return `<div class="project-poster"><img src="assets/${posters[index]}-poster.jpg" alt="" loading="lazy"></div>`;return [
- '<div class="japan-art"><span class="art-word">Luxe<br><i>Japan.</i></span><span class="art-caption">A DIFFERENT PERSPECTIVE</span></div>',
- '<div class="archive-art"><img src="assets/karchive.jpg" alt="" loading="lazy"><span class="archive-word">K / ARCHIVE</span><span class="art-caption">PROJECT WALKTHROUGH</span></div>',
- '<div class="graph-art"><img src="assets/IOT.png" alt="Knowledge graph about driverless cars and the Internet of Things" loading="lazy"></div>',
- '<div class="creative-art"><canvas class="creative-canvas"></canvas><span class="art-caption">MOVE YOUR CURSOR / LIVE VISUAL</span></div>',
- '<div class="game-art"><span class="game-gem">◆</span><span class="game-player"></span><span class="platform p1"></span><span class="platform p2"></span><span class="platform p3"></span><span class="art-caption">GEMQUEST / CONCEPT COVER</span></div>',
- '<div class="fitness-art"><img src="assets/fitness.jpg" alt="" loading="lazy"><span class="art-caption">PROTOTYPE WALKTHROUGH</span></div>',
- '<div class="visual-design-art"><img src="assets/figma-explorations.png" alt="" loading="lazy"></div>'
-][index];}
+function coverHTML(index){
+ // Projects that use a picture. Change the file name here if yours is different.
+ const images={
+  0:{src:'assets/luxe-japan-poster.jpg',alt:''},
+  1:{src:'assets/karchive-poster.jpg',alt:''},
+  2:{src:'assets/IOT.png',alt:'Knowledge graph about driverless cars and the Internet of Things'},
+  3:{src:'assets/harry-potter.png',alt:'Harry Potter API project'},
+  6:{src:'assets/sveltra-poster.jpg',alt:''}
+ };
+ if(images[index])return `<div class="project-poster"><img src="${images[index].src}" alt="${images[index].alt}" loading="lazy"></div>`;
+ // Projects that use drawn artwork (keyed by project number, starting at 0).
+ const art={
+  4:'<div class="creative-art"><canvas class="creative-canvas"></canvas><span class="art-caption">MOVE YOUR CURSOR / LIVE VISUAL</span></div>',
+  5:'<div class="game-art"><span class="game-gem">◆</span><span class="game-player"></span><span class="platform p1"></span><span class="platform p2"></span><span class="platform p3"></span><span class="art-caption">GEMQUEST / CONCEPT COVER</span></div>',
+  7:'<div class="visual-design-art"><img src="assets/figma-explorations.png" alt="" loading="lazy"></div>'
+ };
+ return art[index]||'';
+}
 const grid=$('#project-grid');
 let motionPaused=reducedMotion.matches;
 let revealObserver;
